@@ -1,0 +1,78 @@
+<body> 
+    
+<div class="container" >
+    
+  <div class="row">
+    
+    <div class="col s5">
+      
+      <div class="card">
+          
+        <div class="card-content">
+          
+          <form #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="employeeService.selectedEmployee._id">
+            <div class="row">
+              <div class="input-field col-s12">
+                <input type="text" name="nombre" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.nombre" placeholder="Nombre de la Seccion">
+              </div>
+              <div class="input-field col-s12">
+                  <select class="browser-default" name="seccion" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.seccion">
+                      <option value="" disabled selected>Seccion</option>
+                      <option value="Manada">Manada</option>
+                      <option value="Tropa">Tropa</option>
+                      <option value="Comunidad">Comunidad</option>
+                      <option value="Clan">Clan</option>
+                    </select>
+                <!--  <select name="seccion" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.seccion">
+                      <option value="" enable selected>Choose your option</option>
+                      <option * ngFor = "let duration of durations" [value] = "seccion.value">Manada</option>
+                      <option value="2">Option 2</option>
+                      <option value="3">Option 3</option>
+                    </select>
+                <input type="text" name="seccion" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.seccion" placeholder="Seccion">-->
+              </div>              
+              <div class="input-field col-s12">
+                <input type="text" name="cum" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.cum" placeholder="CUM del Jefe de Seccion">
+              </div>
+              <div class="card-action">
+                <div class="input-field col-s12">
+                  <button class="btn right" style="margin-left: 2px;" (click)="resetForm(employeeForm)">Clean</button>
+                  <button class="btn right">Save</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col s7">
+      <table class="responsive-table">
+        <thead>
+           
+          <th>Nombre</th>
+          <th>Seccion</th>
+          <th>Cum</th>          
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employeeService.employees">
+           
+            <td>{{ employee.nombre }}</td>
+            <td>{{ employee.seccion }}</td>
+            <td>{{ employee.cum }}</td>
+            <td>
+              <a (click)="editEmployee(employee)">
+                <i class="material-icons">edit</i>
+              </a>
+              <a (click)="deleteEmployee(employee._id, employeeForm)">
+                <i class="material-icons">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>

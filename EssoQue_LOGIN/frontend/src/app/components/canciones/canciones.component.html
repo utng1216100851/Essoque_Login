@@ -1,0 +1,78 @@
+<body>
+  <div class="container" style="padding-top: 70px;">
+    <div class="row">
+      <div class="col s5" style="padding-bottom: 100px;">
+        <div class="card">
+          <div class="card-content">
+            <form #cancionForm="ngForm" (ngSubmit)="addCancion(cancionForm)" >
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="cancionService.selectedCancion._id">
+              <div class="row">
+                <div class="imput-field col s12">
+                  <input type="text" name="nombre" #nombre="ngModel" 
+                  [(ngModel)]="cancionService.selectedCancion.nombre" 
+                  placeholder="Agregar Nombre">
+                </div>
+                <div class="imput-field col s12">
+                  <input type="text" name="artista" #artista="ngModel" 
+                  [(ngModel)]="cancionService.selectedCancion.artista" 
+                  placeholder="Agregar Artista">
+                </div>
+                <div class="imput-field col s12">
+                  <input type="text" name="album" #album="ngModel" 
+                  [(ngModel)]="cancionService.selectedCancion.album" 
+                  placeholder="Agregar Album">
+                </div>
+                <div class="imput-field col s12">
+                  <input type="file" name="url" #tipo="ngModel" 
+                  [(ngModel)]="cancionService.selectedCancion.url" 
+                  placeholder="Agregar Cancion">
+                </div>
+                <div class="imput-field col s12">
+                  <input type="date" name="fecha" #fecha="ngModel" 
+                  [(ngModel)]="cancionService.selectedCancion.fecha" 
+                  placeholder="Agregar Fecha">
+                </div>
+                <div class="card.action">
+                  <div class="input-field col s12">
+                    <button class="btn right" style="margin-left: 5px">Guardar</button>
+                    <button class="btn right" (click)="resetForm(cancionForm)">Limpiar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col s7" style="padding-top: 8px; padding-bottom: 100px;"> 
+        <table style="background: aliceblue;">
+          <thead>
+            <th style="text-align: center;">Nombre</th>
+            <th style="text-align: center;">Artista</th>
+            <th style="text-align: center;">Album</th>
+            <th style="text-align: center;">URL</th>
+            <th style="text-align: center;">Fecha</th>
+            <th style="text-align: center;">Operaciones</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cancion of cancionService.canciones">
+              <td style="text-align: center;">{{ cancion.nombre }}</td>
+              <td style="text-align: center;">{{ cancion.artista }}</td>
+              <td style="text-align: center;">{{ cancion.album }}</td>
+              <td style="text-align: center;">{{ cancion.url }}</td>
+              <td style="text-align: center;">{{ cancion.fecha }}</td>
+              <td style="text-align: center;">
+                <a (click)="editCancion(cancion)">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a (click)="deleteCancion(cancion._id)">
+                    <i class="material-icons">delete</i>
+                  </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </body>
+  

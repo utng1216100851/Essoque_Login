@@ -1,0 +1,71 @@
+<body>
+  <div class="container" style="padding-top: 70px;">
+    <div class="row">
+      <div class="col s5" style="padding-bottom: 100px;">
+        <div class="card">
+          <div class="card-content">
+            <form #eventoForm="ngForm" (ngSubmit)="addEvento(eventoForm)" >
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="eventoService.selectedEvento._id">
+              <div class="row">
+                <div class="imput-field col s12">
+                  <input type="text" name="lugar" #lugar="ngModel" 
+                  [(ngModel)]="eventoService.selectedEvento.lugar" 
+                  placeholder="Agregar Lugar">
+                </div>
+                <div class="imput-field col s12">
+                  <input type="text" name="escenario" #escenario="ngModel" 
+                  [(ngModel)]="eventoService.selectedEvento.escenario" 
+                  placeholder="Agregar Escenario">
+                </div>
+                <div class="imput-field col s12">
+                  <input type="text" name="tipo" #tipo="ngModel" 
+                  [(ngModel)]="eventoService.selectedEvento.tipo" 
+                  placeholder="Agregar tipo Evento">
+                </div>
+                <div class="imput-field col s12">
+                  <input type="date" name="fecha" #fecha="ngModel" 
+                  [(ngModel)]="eventoService.selectedEvento.fecha" 
+                  placeholder="Agregar Fecha">
+                </div>
+                <div class="card.action">
+                  <div class="input-field col s12">
+                    <button class="btn right" style="margin-left: 5px">Guardar</button>
+                    <button class="btn right" (click)="resetForm(eventoForm)">Limpiar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col s7" style="padding-top: 8px; padding-bottom: 100px;"> 
+        <table style="background: aliceblue;">
+          <thead>
+            <th style="text-align: center;">Lugar</th>
+            <th style="text-align: center;"> Escenario</th>
+            <th style="text-align: center;">Tipo Evento</th>
+            <th style="text-align: center;">Fecha</th>
+            <th style="text-align: center;">Operaciones</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let evento of eventoService.eventos">
+              <td style="text-align: center;">{{ evento.lugar }}</td>
+              <td style="text-align: center;">{{ evento.escenario }}</td>
+              <td style="text-align: center;">{{ evento.tipo }}</td>
+              <td style="text-align: center;">{{ evento.fecha }}</td>
+              <td style="text-align: center;">
+                <a (click)="editEvento(evento)">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a (click)="deleteEvento(evento._id)">
+                    <i class="material-icons">delete</i>
+                  </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </body>
+  

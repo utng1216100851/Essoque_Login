@@ -1,0 +1,48 @@
+body{
+  background: #699 ;
+  background-image: url(../../../assets/imagenes/foto.jpg) ;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  
+  }
+  #tblDatos{
+    margin-top: 10px;
+    width: 100px;
+    background-color: #ffffff69;
+  }
+
+#divTable{
+  margin-right: 10px;
+}
+#wor{
+  margin:  0%;
+}
+  
+  #divForm{
+    width: 41%;
+  }
+.container{
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-top: 0%;
+  }
+  
+
+.animate-show-hide.ng-hide {
+    opacity: 0;
+  }
+  
+  .animate-show-hide.ng-hide-add,
+  .animate-show-hide.ng-hide-remove {
+    transition: all linear 0.5s;
+  }
+  
+  .check-element {
+    border: 1px solid black;
+    opacity: 1;
+    padding: 10px;
+  }
+
+ 

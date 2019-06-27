@@ -1,0 +1,56 @@
+<body>
+  <div class="container" style="padding-top: 70px;">
+    <div class="row">
+      <div class="col s5" style="padding-bottom: 100px;">
+        <div class="card">
+          <div class="card-content">
+            <form #albumForm="ngForm" (ngSubmit)="addAlbum(albumForm)" >
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="albumService.selectedAlbum._id">
+              <div class="row">
+                <div class="imput-field col s12">
+                  <input type="text" name="nombre" #nombre="ngModel" 
+                  [(ngModel)]="albumService.selectedAlbum.nombre" 
+                  placeholder="Agregar Nombre">
+                </div>
+                <div class="imput-field col s12">
+                  <input type="date" name="fecha" #fecha="ngModel" 
+                  [(ngModel)]="albumService.selectedAlbum.fecha" 
+                  placeholder="Agregar Fecha">
+                </div>
+                <div class="card.action">
+                  <div class="input-field col s12">
+                    <button class="btn right" style="margin-left: 5px">Guardar</button>
+                    <button class="btn right" (click)="resetForm(albumForm)">Limpiar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col s7" style="padding-top: 8px; padding-bottom: 100px;"> 
+        <table style="background: aliceblue;">
+          <thead>
+            <th style="text-align: center;">Nombre</th>
+            <th style="text-align: center;">Operaciones</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let album of albumService.albumes">
+              <td style="text-align: center;">{{ album.nombre }}</td>
+              <td style="text-align: center;">{{ album.fecha }}</td>
+              <td style="text-align: center;">
+                <a (click)="editAlbum(album)">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a (click)="deleteAlbum(album._id)">
+                    <i class="material-icons">delete</i>
+                  </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </body>
+  

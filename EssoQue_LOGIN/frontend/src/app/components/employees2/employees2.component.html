@@ -1,0 +1,505 @@
+<body id="b">
+<div class="container">
+  <div class="row" id="wor">
+    <div class="col s5" id="divForm">
+      <div class="card">
+        <div class="card-content" id="form">
+          <form #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="employeeService.selectedEmployee._id">
+            <div class="row">
+              <div class="input-field col-s12">
+                <input type="text" name="nombre" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.nombre" placeholder="Nombre del solicitante">
+              </div>
+              <div class="input-field col-s12">
+                  <select class="browser-default" name="insignia" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.insignia">
+                      <option value="" disabled selected>Insignia</option>
+                      <option value="Vida al aire libre">Vida al aire libre</option>                      
+                    </select>
+                <!--  <select name="seccion" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.seccion">
+                      <option value="" enable selected>Choose your option</option>
+                      <option * ngFor = "let duration of durations" [value] = "seccion.value">Manada</option>
+                      <option value="2">Option 2</option>
+                      
+                    </select>
+                <input type="text" name="seccion" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.seccion" placeholder="Seccion">-->
+              </div>
+              
+              <table>
+                <td>
+                    <div class="input-field col-s12">
+                        <select class="browser-default" name="color" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.color" (change)="capturar($event)">
+                            <option value="" disabled selected>Color</option>
+                            <option value="Amarilla">Amarilla</option>
+                            <option value="Verde">Verde</option>    
+                            <option value="Azul">Azul</option>   
+                            <option value="Roja">Roja</option>                          
+                          </select>
+                          
+                    </div>
+                </td>
+                <td>
+                    <div class="input-field col-s12" >
+                        <select class="browser-default" name="seccion" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.seccion" (change)="capturarSeccion($event)" >
+                            <option value="" disabled selected>Secciòn</option>
+                            <option value="Manada">Manada</option>
+                            <option value="Tropa">Tropa</option>    
+                            <option value="Comunidad">Comunidad</option>   
+                            <option value="Clan">Clan</option>                          
+                          </select>
+                    </div>
+                </td>
+              </table>                           
+              <table>
+                <td>
+                    <div class="input-field col-s12">                  
+                        <input type="date" name="fecha" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.fecha" placeholder="Fecha">
+                    </div>
+                </td>
+                <td>
+                    <div class="input-field col-s12" id="divRadios">
+                        <p>
+                              <label>
+                                <input class="with-gap" name="group1" type="radio" checked (click)="ocultarSEvidencia()" />
+                                <span>Subir Evidencia</span>
+                              </label>
+                            </p>
+                          <p>
+                              <label>
+                                <input class="with-gap" name="group1" type="radio" (click)="ocultarLlEvidencia()"/>
+                                <span>Llenar Evidencia</span>
+                              </label>
+                            </p>                    
+                      </div> 
+                </td>
+              </table>                                          
+              <div class="input-field col-s12" id="divAreasEvaluar"> 
+                <p> <label>Elige la o las áreas a evaluar</label></p>
+               <table>
+                 <tr>
+                 <td><p>
+                    <label>
+                      <input type="checkbox" name="areaCa" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.areaCa" (change)="checkCabuyeria($event)"/>
+                      <span>Cabuyeria</span>
+                    </label>
+                  </p>
+                </td>
+                <td>
+                   <p>
+                        <label>
+                          <input type="checkbox" (change)="checkCampismo($event)"  />
+                          <span>Campismo</span>
+                        </label>
+                      </p>
+                </td>
+                <td>
+                  <p>
+                          <label>
+                            <input type="checkbox" (change)="checkExploracion($event)" />
+                            <span>Exploración</span>
+                          </label>
+                        </p>
+                </td>
+              </tr>
+               </table>
+                  
+                   
+                      
+              </div>
+              <div class="input-field col-s12" id="divMenuCabuyeria"  >
+                <p><label>Minimos Tecnicos en : </label></p>
+                <table>
+                  <tr>
+                    <td>
+                        <p>
+                            <label>
+                              <input type="checkbox" name="miniTecNudos" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.miniTecNudos">
+                              <span>Nudos</span>
+                            </label>
+                          </p>
+                    </td>
+                    <td>
+                        <p>
+                            <label>
+                              <input type="checkbox"  name="miniTecAmarres" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.miniTecAmarres" />
+                              <span>Amarres</span>
+                            </label>
+                          </p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="input-field col-s12" id="divMenuCampismo">
+                  <p><label>Minimos Tecnicos en : </label></p>
+                  <table>
+                    <tr>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Acampado</span>
+                              </label>
+                            </p>
+                      </td>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Alimentaciòn</span>
+                              </label>
+                            </p>
+                      </td>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Meteorologìa</span>
+                              </label>
+                            </p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="input-field col-s12" id="divMenuExploracion">
+                    <p><label> Minimos Tecnicos en : </label></p>
+                    <table>
+                      <tr>
+                        <td>
+                            <p>
+                                <label>
+                                  <input type="checkbox" />
+                                  <span>Excursionismo </span>
+                                </label>
+                              </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>
+                                  <input type="checkbox" />
+                                  <span>Comunicaciòn</span>
+                                </label>
+                              </p>
+                        </td>
+                        <td>
+                            <p>
+                                <label>
+                                  <input type="checkbox" />
+                                  <span>Orientaciòn </span>
+                                </label>
+                              </p>
+                        </td>
+                      </tr>
+                    </table>
+                </div>
+                    <div class="input-field col-s12"  id="divDestresas">
+                    <table>
+                    <tr>
+                      <td>
+                          <div class="input-field col-s12" id="divDestresas1">                   
+                              <table>
+                                <tr>
+                                  <label>Destresas 1 en :</label>  
+                                </tr>
+                                <tr>
+                                    <select class="browser-default" name="destresa1" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.destresa1" >                        
+                                        <optgroup label="Campismo">
+                                          <option value="Nudos">Nudos</option>
+                                          <option value="Amarres">Amarres</option>
+                                          <option value="Aplicacion de Nudos y Amarres">Aplicacion de Nudos y Amarres</option>
+                                        </optgroup>
+                                        <optgroup label="Campismo">
+                                          <option value="Acampado">Acampado</option>
+                                          <option value="Alimentación">Alimentación</option>
+                                          <option value="Meteorología">Meteorología</option>
+                                        </optgroup>
+                                        <optgroup label="Exploración">
+                                            <option value="Excursionismo">Excursionismo</option>
+                                            <option value="Comunicaciòn">Comunicaciòn</option>
+                                            <option value="Orientaciòn">Orientaciòn</option>
+                                            <option value="Conocimiento de la Naturaleza">Conocimiento de la Naturaleza</option>
+                                          </optgroup>
+                                      </select>
+                                </tr>
+                              </table>                                                                
+                              </div>
+                      </td>
+                      <td>
+                          <div class="input-field col-s12" id="divDestresas2"> 
+                              <table>
+                                <tr>
+                                    <label>Destresa 2 en :</label>    
+                                </tr>
+                                <tr>
+                                    <select class="browser-default" name="destresa2" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.destresa2" >                          
+                                        <optgroup label="Campismo">
+                                          <option value="Nudos">Nudos</option>
+                                          <option value="Amarres">Amarres</option>
+                                          <option value="Aplicacion de Nudos y Amarres">Aplicacion de Nudos y Amarres</option>
+                                        </optgroup>
+                                        <optgroup label="Campismo">
+                                          <option value="Acampado">Acampado</option>
+                                          <option value="Alimentación">Alimentación</option>
+                                          <option value="Meteorología">Meteorología</option>
+                                        </optgroup>
+                                        <optgroup label="Exploración">
+                                            <option value="Excursionismo">Excursionismo</option>
+                                            <option value="Comunicaciòn">Comunicaciòn</option>
+                                            <option value="Orientaciòn">Orientaciòn</option>
+                                            <option value="Conocimiento de la Naturaleza">Conocimiento de la Naturaleza</option>
+                                          </optgroup>
+                                      </select>  
+                                </tr>
+                              </table>                                                                            
+                              </div>
+                      </td>
+                    </tr>
+                      <tr>
+                        <td>
+                          <div class="input-field col-s18" id="divDestresas3"> 
+                              <table>
+                                <tr>
+                                    <label>Destresa 3 en :</label>           
+                                </tr>
+                                <tr>
+                                    <select class="browser-default" name="destresa3" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.destresa3">                        
+                                        <optgroup label="Campismo">
+                                          <option value="Nudos">Nudos</option>
+                                          <option value="Amarres">Amarres</option>
+                                          <option value="Aplicacion de Nudos y Amarres">Aplicacion de Nudos y Amarres</option>
+                                        </optgroup>
+                                        <optgroup label="Campismo">
+                                          <option value="Acampado">Acampado</option>
+                                          <option value="Alimentación">Alimentación</option>
+                                          <option value="Meteorología">Meteorología</option>
+                                        </optgroup>
+                                        <optgroup label="Exploración">
+                                            <option value="Excursionismo">Excursionismo</option>
+                                            <option value="Comunicaciòn">Comunicaciòn</option>
+                                            <option value="Orientaciòn">Orientaciòn</option>
+                                            <option value="Conocimiento de la Naturaleza">Conocimiento de la Naturaleza</option>
+                                          </optgroup>
+                                      </select>                      
+                                </tr>
+                              </table>                                                           
+                              </div>
+                            </td>
+                      </tr>
+                    </table></div>
+                  
+                  
+                    
+                      
+                  <!--
+              <div class="input-field col-s12" id="divMTNudosManada">
+                  <p><label> Minimos Tecnicos En Nudos - Manada</label></p>
+                  <table>
+                    <tr>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Simple</span>
+                              </label>
+                            </p>
+                      </td>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Buena Acción</span>
+                              </label>
+                            </p>
+                      </td>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Cote Simple</span>
+                              </label>
+                            </p>
+                      </td>
+                    </tr>
+
+                      <tr>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Rizo</span>
+                              </label>
+                            </p>
+                      </td>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Ocho Simple</span>
+                              </label>
+                            </p>
+                      </td>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Para Zapatos</span>
+                              </label>
+                            </p>
+                      </td>
+                      </tr>
+                      <tr>
+                      <td>
+                          <p>
+                              <label>
+                                <input type="checkbox" />
+                                <span>Vuelta de Escota</span>
+                              </label>
+                            </p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="input-field col-s12" id="divDNudosManada">
+                  <p><label>Destresas En Nudos - Manada</label></p>
+                  <table>
+                    <tr>
+                      <td>                          
+                              <p>
+                                  <label>
+                                    <input type="checkbox" />
+                                    <span>Presilla de Alondra</span>
+                                  </label>
+                                </p>
+                      </td>
+                      <td>
+                                <p>
+                                    <label>
+                                      <input type="checkbox" />
+                                      <span>Vuelta de Braza</span>
+                                    </label>
+                                  </p>                            
+                      </td>
+                  
+                    </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <label>
+                              <input type="checkbox" />
+                              <span>Media Llave y Dos Cotes</span>
+                            </label>
+                          </p>                            
+              </td>
+                <td>
+                    <p>
+                        <label>
+                          <input type="checkbox" />
+                          <span>Gasa Simple</span>
+                        </label>
+                      </p>                            
+          </td>
+                </tr>
+          <tr>
+          <td>
+              <p>
+                  <label>
+                    <input type="checkbox" />
+                    <span>Gaza de Ocho</span>
+                  </label>
+                </p>                            
+    </td>
+    <td>
+        <p>
+            <label>
+              <input type="checkbox" />
+              <span>Ballestrinque</span>
+            </label>
+          </p>                            
+</td>
+<td>
+    <p>
+        <label>
+          <input type="checkbox" />
+          <span>Margarita</span>
+        </label>
+      </p>                            
+</td>
+                    </tr>
+                  </table>
+                </div>
+                -->
+             <div class="input-field col-s12" id="divSubirEvidencia">
+               <table>
+                 <td>
+                    <div class="input-field col-s12" >
+                        <div class="file-field input-field">
+                          <div class="btn">
+                            <span>File</span>
+                            <i class="material-icons right">cloud_upload</i>
+                            <input type="file" name="archivoEvidencia" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.archivoEvidencia">
+                          </div>
+                                    <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                          </div>
+                        </div>
+                      </div>
+                 </td>
+                 <TR>
+                    <div class="input-field col-s12" >
+                        <button class="btn waves-effect waves-light" type="button" name="action">Descargar Formato
+                            <i class="material-icons right">cloud_download</i>
+                          </button>
+                    </div>
+                  </TR>
+               </table>
+             </div>
+             
+             
+              <div class="card-action">
+                <div class="input-field col-s12">
+                  <button class="btn right" style="margin-left: 2px;" (click)="resetForm(employeeForm)">Clean</button>
+                  <button class="btn right">Save</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col s5" id="divTable">
+      <table class="responsive-table" style="text-align: center;" id="tblDatos">
+        <thead>
+          <th style="text-align: center;  background: #3534342f;">Nombre</th>
+          <th style="text-align: center;">Insignia</th>
+          <th style="text-align: center;  background:#3534342f;">Color</th>
+          <th style="text-align: center;">Fecha</th>
+          <th style="text-align: center;  background:#3534342f;">Area</th> 
+          <th style="text-align: center;">Minimos Tecnicos</th>                     
+          <th style="text-align: center;  background: #3534342f;" >Destresas</th>
+          <th style="text-align: center;" >Evidencia</th>
+          <th style="text-align: center;  background:#3534342f;" >Seccion</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee2 of employeeService.employees">
+            <td style="text-align: center;  background: #3534342f;">{{ employee2.nombre }}</td>
+            <td style="text-align: center;">{{ employee2.insignia }}</td>
+            <td style="text-align: center;  background:#3534342f;">{{ employee2.color }}</td>
+            <td style="text-align: center;">{{ employee2.fecha }}</td>
+            <td style="text-align: center;  background:#3534342f; ">{{ employee2.areaCa =='true'?'Cabuyeria':'' }}</td>            
+            <td style="text-align: center;">{{ employee2.miniTecAmarres=='true'?'Amarres':'' }} {{ employee2.miniTecNudos=='true'?'Nudos':'' }}</td>
+            <td style="text-align: center;  background:#3534342f;"> {{ employee2.destresa1 }}  {{ employee2.destresa2 }} {{ employee2.destresa3 }}</td>                    
+            <td style="text-align: center;">{{ employee2.archivoEvidencia }}</td>
+            <td style="text-align: center;  background:#3534342f;">{{ employee2.seccion }}</td>
+            <td>
+              <a (click)="editEmployee(employee2)">
+                <i class="material-icons" style="text-align: center;">edit</i>
+              </a>
+              <a (click)="deleteEmployee(employee2._id, employeeForm)">
+                <i class="material-icons" style="text-align: center;">delete</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
